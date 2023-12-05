@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html>
+<head>
+
+    <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='style.css') }}">
+    <!-- <link rel="stylesheet" type="text/css" href="http://127.0.0.1:5001/static/style.css"> -->
+
+    <title>Upload Norse Gods CSV</title>
+    
+</head>
+<body>
+    <h2>Upload Norse Gods File</h2>
+    <form action="/upload" method="post" enctype="multipart/form-data">
+        <input type="file" name="file" accept=".csv">
+        <input type="submit" value="Upload">
+    </form>
+
+     <!-- Filter Form -->
+     <form action="/filter" method="post">
+        <label for="filter">Filter by God's Name:</label>
+        <input type="text" id="filter" name="filter">
+        <input type="submit" value="Filter">
+    </form>
+</body>
+</html>
