@@ -2,7 +2,7 @@
 body { 
     font-family: Arial, sans-serif; 
     margin: 20px; 
-    color: #9c1a1a; /* Font color for the body */
+    color: #000000; /* Font color for the body */
 }
 
 form { 
@@ -21,7 +21,7 @@ form {
     padding: 8px; 
     text-align: left;
     font-size: 16px; /* Font size for table cells */
-    color: #921919; /* Font color for table cells */
+    color: #000000; /* Font color for table cells */
 }
 
 #table th {
