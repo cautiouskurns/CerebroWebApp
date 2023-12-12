@@ -6,9 +6,38 @@
   <title>Web App Testing</title>
   <meta content="width=device-width, initial-scale=1" name="viewport">
   <meta content="Webflow" name="generator">
-  <!-- <link href="css/normalize.css" rel="stylesheet" type="text/css">
-  <link href="css/webflow.css" rel="stylesheet" type="text/css">
-  <link href="css/web-app-testing.webflow.css" rel="stylesheet" type="text/css"> -->
+
+  <style>
+    table, th, td {
+        border: 1px solid black;
+        border-collapse: collapse;
+    }
+    th, td {
+        padding: 5px;
+        text-align: left;
+    }
+    .topic, .concept {
+        padding-left: 20px;
+    }
+
+    .table-container {
+    max-width: 600px; /* Adjust as needed */
+    max-height: 400px; /* Adjust as needed */
+    overflow-y: auto;  /* Enables vertical scrollbar if content overflows */
+    overflow-x: hidden; /* Keeps horizontal scrollbar hidden */
+    border: 1px solid #ddd; /* Optional: adds a border around the table container */
+    }
+
+    table {
+      width: 100%; /* Ensures the table fills the container */
+      border-collapse: collapse; /* Optional: for table styling */
+    }
+
+    .hero-blank-1 h1 {
+    display: block; /* This ensures the h1 takes up the full width */
+    clear: both; /* This prevents floating elements from affecting layout */
+    }
+  </style>
 
   <link href="{{ url_for('static', filename='css/normalize.css') }}" rel="stylesheet" type="text/css">
   <link href="{{ url_for('static', filename='css/webflow.css') }}" rel="stylesheet" type="text/css">
@@ -30,17 +59,47 @@
         <div class="login-icon"><img src="https://uploads-ssl.webflow.com/6568fc7d4905c7f7dab01381/65777f45b57e0d4d7af9dd76_Vectors-Wrapper.svg" loading="lazy" width="34" height="34" alt="" class="vectors-wrapper-8"></div>
       </div>
       <div class="home-hero">
-        <div class="hero-blank-1"></div>
-        <form action="/" method="post" enctype="multipart/form-data">
+        <div class="hero-blank-1">
+          <h1>Data Display</h1> 
+          <div class="table-container">
+             
+
+          {% for subject in subjects %} 
+          <h2>Subject: {{ subject.subject_name }}</h2>
+          
+          <table>
+                <tr>
+                    <th>Topic ID</th>
+                    <th>Topic Name</th>
+                </tr>
+                {% for topic in subject.topics %}
+                <tr class="topic">
+                    <td>{{ topic.topic_id }}</td>
+                    <td>{{ topic.topic_name }}</td>
+                </tr>
+                    {% for concept in topic.concepts %}
+                    <tr class="concept">
+                        <td colspan="2">Concept: {{ concept.concept_name }}</td>
+                    </tr>
+                    {% endfor %}
+                {% endfor %}
+            </table> 
+         {% endfor %}
+          </div>
+        </div>
+       
+        
+        <!-- <form action="/" method="post" enctype="multipart/form-data">
           <input type="file" name="file">
           <input type="submit" value="Upload">
-        </form>
-        <h1>Products</h1>
+        </form> -->
+        <!-- <h1>Products</h1>
         <ul>
             {% for product in products %}
                 <li>{{ product.product_name }} - ${{ product.price }}</li>
             {% endfor %}
-        </ul>
+        </ul> -->
+        
         <div class="hero-main">
           <div class="home-link-icon"><img src="https://uploads-ssl.webflow.com/6568fc7d4905c7f7dab01381/65777f453b13b5a961561a1f_Vectors-Wrapper.svg" loading="lazy" width="158.02928161621094" height="186.00006103515625" alt="" class="vectors-wrapper-9"></div>
           <div class="cerebro-title">

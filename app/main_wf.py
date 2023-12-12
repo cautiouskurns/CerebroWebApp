@@ -2,27 +2,37 @@
 from flask import Flask, request, render_template, redirect, url_for
 import pandas as pd
 from flask_sqlalchemy import SQLAlchemy
+import os
+
 
 app = Flask(__name__)
 
-app.config['SQLALCHEMY_DATABASE_URI'] = 'sqlite:///mydatabase.db'
+basedir = os.path.abspath(os.path.dirname(__file__))
+app.config['SQLALCHEMY_DATABASE_URI'] = 'sqlite:///' + os.path.join(basedir, 'TestDatabase.db')
 
 # Create a SQLAlchemy object and bind it to the Flask app
 db = SQLAlchemy(app)
 
 
-# Define a model, which creates a table structure
-class Product(db.Model):
-    # Define the id column as an integer primary key
-    id = db.Column(db.Integer, primary_key=True)
-    # Define the product_name column as a string with a maximum length of 120 characters
-    product_name = db.Column(db.String(120), nullable=False)
-    # Define the price column as a float
-    price = db.Column(db.Float, nullable=False)
+# Define models, which creates table structures
+class Subject(db.Model):
+    __tablename__ = 'subjects'
+    subject_id = db.Column(db.Integer, primary_key=True)
+    subject_name = db.Column(db.String(255), nullable=False)
+    topics = db.relationship('Topic', backref='subject', lazy=True)
 
-    # Define a string representation for the Product class
-    def __repr__(self):
-        return '<Product %r>' % self.product_name
+class Topic(db.Model):
+    __tablename__ = 'topics'
+    topic_id = db.Column(db.Integer, primary_key=True)
+    topic_name = db.Column(db.String(255), nullable=False)
+    subject_id = db.Column(db.Integer, db.ForeignKey('subjects.subject_id'), nullable=False)
+    concepts = db.relationship('Concept', backref='topic', lazy=True)
+
+class Concept(db.Model):
+    __tablename__ = 'concepts'
+    concept_id = db.Column(db.Integer, primary_key=True)
+    concept_name = db.Column(db.String(255), nullable=False)
+    topic_id = db.Column(db.Integer, db.ForeignKey('topics.topic_id'), nullable=False)
 
 
 
@@ -36,17 +46,23 @@ def allowed_file(filename):
     return '.' in filename and filename.rsplit('.', 1)[1].lower() in ALLOWED_EXTENSIONS
 
 
-# Process the file by reading its contents and adding records to the database
 def process_file(file):
-    # Read the file as a CSV using pandas
     df = pd.read_csv(file)
-    # Iterate over each row in the DataFrame
     for index, row in df.iterrows():
-        # Create a new record using the values from the row
-        new_record = Product(product_name=row['product_name'], price=row['price'])
-        # Add the new record to the database session
-        db.session.add(new_record)
-    # Commit the changes to the database
+        # Assuming your CSV has columns 'subject_name', 'topic_name', 'concept_name'
+        subject = Subject.query.filter_by(subject_name=row['subject_name']).first()
+        if not subject:
+            subject = Subject(subject_name=row['subject_name'])
+            db.session.add(subject)
+
+        topic = Topic.query.filter_by(topic_name=row['topic_name'], subject=subject).first()
+        if not topic:
+            topic = Topic(topic_name=row['topic_name'], subject=subject)
+            db.session.add(topic)
+
+        concept = Concept(concept_name=row['concept_name'], topic=topic)
+        db.session.add(concept)
+
     db.session.commit()
 
 
@@ -67,11 +83,11 @@ def index3():
             message = "File uploaded successfully!"
 
     # Retrieve all products from the database
-    products = Product.query.all()
+    subjects = Subject.query.all()
 
     # Render the index3.html template, passing the products and message variables
-    return render_template('index3.html', products=products, message=message)
-
+    return render_template('index3.html', subjects=subjects, message=message)
+    # return render_template('LearningDataOutputTest.html', subjects=subjects, message=message)
 
 
 if __name__ == '__main__':
@@ -81,19 +97,3 @@ if __name__ == '__main__':
         print("Database created.")
     app.run(port=5001)
 
-
-# from flask import Flask, render_template
-
-# app = Flask(__name__)
-
-# @app.route('/')
-# def index3():
-#     # This will simply render the index3.html template without any additional data
-#     return render_template('index3.html')
-
-# # @app.route('/')
-# # def index():
-# #     return 'Hello, World!'
-
-# if __name__ == '__main__':
-#     app.run(port=5001)

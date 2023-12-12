@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Data Display</title>
+    <style>
+        table, th, td {
+            border: 1px solid black;
+            border-collapse: collapse;
+        }
+        th, td {
+            padding: 5px;
+            text-align: left;
+        }
+        .topic, .concept {
+            padding-left: 20px;
+        }
+    </style>
+</head>
+<body>
+    <form action="/" method="post" enctype="multipart/form-data">
+        <input type="file" name="file">
+        <input type="submit" value="Upload">
+    </form>
+    <h1>Data Display</h1>
+    {% for subject in subjects %}
+        <h2>Subject: {{ subject.subject_name }}</h2>
+        <table>
+            <tr>
+                <th>Topic ID</th>
+                <th>Topic Name</th>
+            </tr>
+            {% for topic in subject.topics %}
+            <tr class="topic">
+                <td>{{ topic.topic_id }}</td>
+                <td>{{ topic.topic_name }}</td>
+            </tr>
+                {% for concept in topic.concepts %}
+                <tr class="concept">
+                    <td colspan="2">Concept: {{ concept.concept_name }}</td>
+                </tr>
+                {% endfor %}
+            {% endfor %}
+        </table>
+    {% endfor %}
+</body>
+</html>
