@@ -87,6 +87,8 @@ def index3():
 
     # Render the index3.html template, passing the products and message variables
     return render_template('index3.html', subjects=subjects, message=message)
+    
+    # return render_template('GraphTest.html', subjects=subjects, message=message)
     # return render_template('LearningDataOutputTest.html', subjects=subjects, message=message)
 
 

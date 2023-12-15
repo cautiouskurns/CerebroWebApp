@@ -1,0 +1,25 @@
+concept_id,concept_name,topic_id,topic_name,subject_id,subject_name
+1,Linear Equations,1,Algebra,1,Mathematics
+13,Integral Calculus,1,Algebra,1,Mathematics
+2,Differential Calculus,2,Calculus,1,Mathematics
+14,Classical Electrodynamics,2,Calculus,1,Mathematics
+3,Newton's Laws,3,Classical Mechanics,2,Physics
+15,Deep Learning,3,Classical Mechanics,2,Physics
+4,Schrodinger's Equation,4,Quantum Physics,2,Physics
+16,Hash Tables,4,Quantum Physics,2,Physics
+5,Neural Networks,5,Machine Learning,3,Programming
+17,Egyptian History,5,Machine Learning,3,Programming
+6,Binary Trees,6,Data Structures,3,Programming
+18,Cold War,6,Data Structures,3,Programming
+7,Roman Empire,7,Ancient History,4,History
+19,Graph Theory,7,Ancient History,4,History
+8,World War II,8,Modern History,4,History
+20,General Relativity,8,Modern History,4,History
+9,Sorting Algorithms,9,Algorithms,3,Programming
+21,Trigonometry,9,Algorithms,3,Programming
+10,Black Holes,10,Astrophysics,2,Physics
+22,Renaissance,10,Astrophysics,2,Physics
+11,Pythagorean Theorem,11,Geometry,1,Mathematics
+23,Function Programming,11,Geometry,1,Mathematics
+12,French Revolution,12,World History,4,History
+24,Data Analysis,12,World History,4,History
