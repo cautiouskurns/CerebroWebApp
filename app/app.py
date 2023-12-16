@@ -86,14 +86,39 @@ def index():
 
 
 # Define a route for the index page, which handles both GET and POST requests
-@app.route('/Feed', methods=['GET', 'POST'])
+@app.route('/feed', methods=['GET', 'POST'])
 def feed():
-    message = ""  # Optional, for showing a message after upload
-    # Retrieve all products from the database
+    message = "" 
     subjects = Subject.query.all()
-    # Render the index.html template, passing the products and message variables
     return render_template('feed.html', subjects=subjects, message=message)
 
+# Define a route for the index page, which handles both GET and POST requests
+@app.route('/dash', methods=['GET', 'POST'])
+def dash():
+    message = ""  
+    subjects = Subject.query.all()
+    return render_template('dash.html', subjects=subjects, message=message)
+
+# Define a route for the index page, which handles both GET and POST requests
+@app.route('/assess', methods=['GET', 'POST'])
+def assess():
+    message = ""  
+    subjects = Subject.query.all()
+    return render_template('assess.html', subjects=subjects, message=message)
+
+# Define a route for the index page, which handles both GET and POST requests
+@app.route('/mentalmodel', methods=['GET', 'POST'])
+def mentalmodel():
+    message = ""  
+    subjects = Subject.query.all()
+    return render_template('mentalmodel.html', subjects=subjects, message=message)
+
+# Define a route for the index page, which handles both GET and POST requests
+@app.route('/simulate', methods=['GET', 'POST'])
+def simulate():
+    message = ""  
+    subjects = Subject.query.all()
+    return render_template('simulate.html', subjects=subjects, message=message)
 
 
 if __name__ == '__main__':
@@ -102,4 +127,6 @@ if __name__ == '__main__':
         db.create_all()
         print("Database created.")
     app.run(port=5001)
+
+
 

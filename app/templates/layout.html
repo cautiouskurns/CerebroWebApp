@@ -9,30 +9,7 @@
   <meta content="Webflow" name="generator">
 
   <style>
-    table, th, td {
-        border: 1px solid black;
-        border-collapse: collapse;
-    }
-    th, td {
-        padding: 5px;
-        text-align: left;
-    }
-    .topic, .concept {
-        padding-left: 20px;
-    }
-
-    .table-container {
-    max-width: 600px; /* Adjust as needed */
-    max-height: 400px; /* Adjust as needed */
-    overflow-y: auto;  /* Enables vertical scrollbar if content overflows */
-    overflow-x: hidden; /* Keeps horizontal scrollbar hidden */
-    border: 1px solid #ddd; /* Optional: adds a border around the table container */
-    }
-
-    table {
-      width: 100%; /* Ensures the table fills the container */
-      border-collapse: collapse; /* Optional: for table styling */
-    }
+   
 
     .hero-blank-1 h1 {
     display: block; /* This ensures the h1 takes up the full width */
@@ -58,6 +35,8 @@
   <link href="{{ url_for('static', filename='css/normalize.css') }}" rel="stylesheet" type="text/css">
   <link href="{{ url_for('static', filename='css/webflow.css') }}" rel="stylesheet" type="text/css">
   <link href="{{ url_for('static', filename='css/web-app-testing.webflow.css') }}" rel="stylesheet" type="text/css">
+  
+  <link href="{{ url_for('static', filename='css/feed.css') }}" rel="stylesheet" type="text/css">
 
   <link href="https://fonts.googleapis.com" rel="preconnect">
   <link href="https://fonts.gstatic.com" rel="preconnect" crossorigin="anonymous">
@@ -68,185 +47,38 @@
   <link href="images/webclip.png" rel="apple-touch-icon">
 </head>
 <body>
-    {% block body %}{% endblock %}
-  <header>
+  <!-- <header>
     <nav>
         <ul>
             <li><a href="{{ url_for('index') }}">Home</a></li>
             <li><a href="{{ url_for('feed') }}">Feed</a></li>
+            <li><a href="{{ url_for('dash') }}">Dash</a></li>
+            <li><a href="{{ url_for('mentalmodel') }}">Mentalmodel</a></li>
+            <li><a href="{{ url_for('assess') }}">Assess</a></li>
+            <li><a href="{{ url_for('simulate') }}">Simulate</a></li>
         </ul>
     </nav>
-  </header>
+  </header> -->
+
+
   <div class="home-al">
-    <div class="sidebar"><img src="https://uploads-ssl.webflow.com/6568fc7d4905c7f7dab01381/65772861505812c844c7ca41_Vectors-Wrapper.svg" loading="lazy" width="70" height="1080" alt="" class="vectors-wrapper"><img src="https://uploads-ssl.webflow.com/6568fc7d4905c7f7dab01381/6577286223d07a409443d2bf_Vectors-Wrapper.svg" loading="lazy" width="37" height="37" alt="" class="vectors-wrapper-2"><img src="https://uploads-ssl.webflow.com/6568fc7d4905c7f7dab01381/65772863f2320286f6300a52_Vectors-Wrapper.svg" loading="lazy" width="43" height="42" alt="" class="vectors-wrapper-3"><img src="https://uploads-ssl.webflow.com/6568fc7d4905c7f7dab01381/657728635241791ca6b71794_Vectors-Wrapper.svg" loading="lazy" width="43" height="43" alt="" class="vectors-wrapper-4"><img src="https://uploads-ssl.webflow.com/6568fc7d4905c7f7dab01381/65777f43c1eac9d5410aaf0c_Vectors-Wrapper.svg" loading="lazy" width="37" height="37" alt="" class="vectors-wrapper-5"><img src="https://uploads-ssl.webflow.com/6568fc7d4905c7f7dab01381/657728657b8809ffe4d8a8fd_Vectors-Wrapper.svg" loading="lazy" width="37" height="37" alt="" class="vectors-wrapper-6"><img src="https://uploads-ssl.webflow.com/6568fc7d4905c7f7dab01381/6577286501aabcedc49c6c5f_Vectors-Wrapper.svg" loading="lazy" width="43" height="43" alt="" class="vectors-wrapper-7"></div>
+    <!-- <div class="sidebar"><img src="https://uploads-ssl.webflow.com/6568fc7d4905c7f7dab01381/65772861505812c844c7ca41_Vectors-Wrapper.svg" loading="lazy" width="70" height="1080" alt="" class="vectors-wrapper"><img src="https://uploads-ssl.webflow.com/6568fc7d4905c7f7dab01381/6577286223d07a409443d2bf_Vectors-Wrapper.svg" loading="lazy" width="37" height="37" alt="" class="vectors-wrapper-2"><img src="https://uploads-ssl.webflow.com/6568fc7d4905c7f7dab01381/65772863f2320286f6300a52_Vectors-Wrapper.svg" loading="lazy" width="43" height="42" alt="" class="vectors-wrapper-3"><img src="https://uploads-ssl.webflow.com/6568fc7d4905c7f7dab01381/657728635241791ca6b71794_Vectors-Wrapper.svg" loading="lazy" width="43" height="43" alt="" class="vectors-wrapper-4"><img src="https://uploads-ssl.webflow.com/6568fc7d4905c7f7dab01381/65777f43c1eac9d5410aaf0c_Vectors-Wrapper.svg" loading="lazy" width="37" height="37" alt="" class="vectors-wrapper-5"><img src="https://uploads-ssl.webflow.com/6568fc7d4905c7f7dab01381/657728657b8809ffe4d8a8fd_Vectors-Wrapper.svg" loading="lazy" width="37" height="37" alt="" class="vectors-wrapper-6"><img src="https://uploads-ssl.webflow.com/6568fc7d4905c7f7dab01381/6577286501aabcedc49c6c5f_Vectors-Wrapper.svg" loading="lazy" width="43" height="43" alt="" class="vectors-wrapper-7"></div> -->
+    <div class="sidebar">
+      <a href=""><img src="{{ url_for('static', filename='images/Vectors-Wrapper.svg') }}" loading="lazy" width="70" height="1080" alt="Home" class="vectors-wrapper"></a>
+      <a href="{{ url_for('index') }}"><img src="{{ url_for('static', filename='images/Vectors-Wrapper_18.svg') }}" loading="lazy" width="45" height="45" alt="Home" class="vectors-wrapper-7"></a>
+      <a href="{{ url_for('feed') }}"><img src="{{ url_for('static', filename='images/Vectors-Wrapper_16.svg') }}" loading="lazy" width="45" height="45" alt="Feed" class="vectors-wrapper-4"></a>
+      <a href="{{ url_for('dash') }}"><img src="{{ url_for('static', filename='images/Vectors-Wrapper_4.svg') }}" loading="lazy" width="45" height="45" alt="Dash" class="vectors-wrapper-2"></a>
+      <a href="{{ url_for('mentalmodel') }}"><img src="{{ url_for('static', filename='images/Vectors-Wrapper_1.svg') }}" loading="lazy" width="45" height="45" alt="Mentalmodel" class="vectors-wrapper-3"></a>
+      <a href="{{ url_for('assess') }}"><img src="{{ url_for('static', filename='images/Vectors-Wrapper_17.svg') }}" loading="lazy" width="45" height="45" alt="Assess" class="vectors-wrapper-5"></a>
+      <a href="{{ url_for('simulate') }}"><img src="{{ url_for('static', filename='images/Vectors-Wrapper_2.svg') }}" loading="lazy" width="45" height="45" alt="Simulate" class="vectors-wrapper-6"></a>
+  </div>
     <div class="home-main-body">
       <div class="top-bar">
         <div class="login-icon"><img src="https://uploads-ssl.webflow.com/6568fc7d4905c7f7dab01381/65777f45b57e0d4d7af9dd76_Vectors-Wrapper.svg" loading="lazy" width="34" height="34" alt="" class="vectors-wrapper-8"></div>
       </div>
-      <div class="home-hero">
-        <div class="hero-blank-1">
-        
-          <h1>Data Display</h1> 
-          <div class="table-container">
-             
-          {% for subject in subjects %} 
-          <h2>Subject: {{ subject.subject_name }}</h2>
-          
-          <table>
-                <tr>
-                    <th>Topic ID</th>
-                    <th>Topic Name</th>
-                </tr>
-                {% for topic in subject.topics %}
-                <tr class="topic">
-                    <td>{{ topic.topic_id }}</td>
-                    <td>{{ topic.topic_name }}</td>
-                </tr>
-                    {% for concept in topic.concepts %}
-                    <tr class="concept">
-                        <td colspan="2">Concept: {{ concept.concept_name }}</td>
-                    </tr>
-                    {% endfor %}
-                {% endfor %}
-            </table> 
-         {% endfor %}
-          </div>
-         
-        </div>
-              
-        <!-- <form action="/" method="post" enctype="multipart/form-data">
-          <input type="file" name="file">
-          <input type="submit" value="Upload">
-        </form> -->
-        <!-- <h1>Products</h1>
-        <ul>
-            {% for product in products %}
-                <li>{{ product.product_name }} - ${{ product.price }}</li>
-            {% endfor %}
-        </ul> -->
-        
-        <div class="hero-main">
-          <div class="home-link-icon"><img src="https://uploads-ssl.webflow.com/6568fc7d4905c7f7dab01381/65777f453b13b5a961561a1f_Vectors-Wrapper.svg" loading="lazy" width="158.02928161621094" height="186.00006103515625" alt="" class="vectors-wrapper-9"></div>
-          <div class="cerebro-title">
-            <div class="text">CEREBRO</div>
-          </div>
-          <div class="cerebro-subtitle">
-            <div class="text-2">Your Personalised Tutor</div>
-          </div>
-          <div class="search-bar">
-            <div class="chat-bar"><img src="https://uploads-ssl.webflow.com/6568fc7d4905c7f7dab01381/65777f46df474d1ff5a78b00_Vectors-Wrapper.svg" loading="lazy" width="576.5" height="37.41935348510742" alt="" class="vectors-wrapper-10"></div>
-          </div>
-        </div>
-        <div class="hero-blank-1">
-          <svg width="200" height="600"></svg>
 
-          <script>
-            var graph = {
-                "nodes": [
-                    {"id": "Mathematics", "group": 1},
-                    {"id": "Algebra", "group": 1},
-                    {"id": "Calculus", "group": 1}
-                    // ... other nodes here
-                ],
-                "links": [
-                    {"source": "Mathematics", "target": "Algebra", "value": 1},
-                    {"source": "Mathematics", "target": "Calculus", "value": 1}
-                    // ... other links here
-                ]
-            };
-    
-            var svg = d3.select("svg"),
-                width = +svg.attr("width"),
-                height = +svg.attr("height");
-    
-            var simulation = d3.forceSimulation()
-                .force("link", d3.forceLink().id(function(d) { return d.id; }))
-                .force("charge", d3.forceManyBody())
-                .force("center", d3.forceCenter(width / 2, height / 2));
-    
-            var link = svg.append("g")
-                .attr("class", "links")
-                .selectAll("line")
-                .data(graph.links)
-                .enter().append("line")
-                .attr("class", "link");
-    
-            var node = svg.append("g")
-                .attr("class", "nodes")
-                .selectAll("g")
-                .data(graph.nodes)
-                .enter().append("g")
-                
-            var circles = node.append("circle")
-                .attr("r", 5)
-                .attr("fill", function(d) { return "#2196F3"; });
-    
-            var labels = node.append("text")
-                .text(function(d) { return d.id; })
-                .attr('x', 6)
-                .attr('y', 3);
-    
-            node.append("title")
-                .text(function(d) { return d.id; });
-    
-            simulation
-                .nodes(graph.nodes)
-                .on("tick", ticked);
-    
-            simulation.force("link")
-                .links(graph.links);
-    
-            function ticked() {
-                link
-                    .attr("x1", function(d) { return d.source.x; })
-                    .attr("y1", function(d) { return d.source.y; })
-                    .attr("x2", function(d) { return d.target.x; })
-                    .attr("y2", function(d) { return d.target.y; });
-    
-                node
-                    .attr("transform", function(d) {
-                        return "translate(" + d.x + "," + d.y + ")";
-                    });
-            }
-        </script>
-        </div>
-      </div>
-      <div class="home-lower">
-        <div class="home-lower-buttons">
-          <div class="home-lower-blank"></div>
-          <div class="home-lower-button-frame">
-            <a href="https://www.google.ie/" target="_blank" class="feed-item-heading w-inline-block">
-              <div class="text-3">Continue</div>
-            </a>
-            <div class="feed-item-heading">
-              <div class="text-3">Explore</div>
-            </div>
-          </div>
-          <div class="home-lower-blank-2"></div>
-        </div>
-        <div class="home-lower-screen-nav">
-          <div class="home-lower-blank-3"></div>
-          <div class="home-lower-screen-nav-buttons">
-            <div class="learn">
-              <div class="text-4">Learn</div><img src="https://uploads-ssl.webflow.com/6568fc7d4905c7f7dab01381/65777f474deb5d256b5f73f5_Vectors-Wrapper.svg" loading="lazy" width="70" height="69.85746765136719" alt="" class="vectors-wrapper-11">
-            </div>
-            <div class="learn">
-              <div class="text-4">See Your Progress</div><img src="https://uploads-ssl.webflow.com/6568fc7d4905c7f7dab01381/65777f47c9e322147a53b3df_Vectors-Wrapper.svg" loading="lazy" width="70.56206512451172" height="71.00009155273438" alt="" class="vectors-wrapper-12">
-            </div>
-            <div class="learn">
-              <div class="text-4">Explore Your Knowledge</div><img src="https://uploads-ssl.webflow.com/6568fc7d4905c7f7dab01381/65777f48a6f7e317f898df98_Vectors-Wrapper.svg" loading="lazy" width="75.5" height="73.74418640136719" alt="" class="vectors-wrapper-13">
-            </div>
-            <div class="learn">
-              <div class="text-4">Test Yourself</div><img src="https://uploads-ssl.webflow.com/6568fc7d4905c7f7dab01381/65777f484e1ef34a1665537c_Vectors-Wrapper.svg" loading="lazy" width="68" height="68" alt="" class="vectors-wrapper-14">
-            </div>
-            <div class="learn">
-              <div class="text-4">Explore Scenarios</div><img src="https://uploads-ssl.webflow.com/6568fc7d4905c7f7dab01381/65777f491e73c72a0183ae3e_Vectors-Wrapper.svg" loading="lazy" width="73" height="72" alt="" class="vectors-wrapper-15">
-            </div>
-          </div>
-          <div class="home-lower-blank-3"></div>
-        </div>
-        <div class="home-lower-blank-4"></div>
-      </div>
+      {% block body %}{% endblock %}
+
     </div>
   </div>
   <script src="https://d3e54v103j8qbb.cloudfront.net/js/jquery-3.5.1.min.dc5e7f18c8.js?site=65777f31b8c1ec848a934565" type="text/javascript" integrity="sha256-9/aliU8dGd2tb6OSsuzixeV4y/faTqgFtohetphbbj0=" crossorigin="anonymous"></script>
